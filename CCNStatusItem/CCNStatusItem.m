@@ -125,6 +125,8 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
 
 @implementation CCNStatusItem
 
+@synthesize itemLength;
+
 #pragma mark - Initialization
 
 + (instancetype)sharedInstance {
@@ -319,6 +321,18 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
 - (void)setWindowConfiguration:(CCNStatusItemWindowConfiguration *)configuration {
     _windowConfiguration = configuration;
     self.statusItem.button.toolTip = configuration.toolTip;
+}
+
+- (NSWindow *)window {
+    return self.statusItemWindowController.window;
+}
+
+- (void)setItemLength:(CGFloat)itemLength {
+    self.statusItem.length = itemLength;
+}
+
+- (CGFloat)itemLength {
+    return self.statusItem.length;
 }
 
 - (BOOL)isDarkMode {

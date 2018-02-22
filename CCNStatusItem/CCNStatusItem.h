@@ -118,6 +118,8 @@ typedef BOOL (^CCNStatusItemShouldShowHandler)(CCNStatusItem *sharedItem);
  */
 @property (strong, readonly) NSStatusItem *statusItem;
 
+@property (assign, nonatomic) CGFloat itemLength;
+
 /**
  Property that represents the dropHandler to be executed if not nil.
  */
@@ -197,6 +199,10 @@ typedef BOOL (^CCNStatusItemShouldShowHandler)(CCNStatusItem *sharedItem);
  */
 @property (strong, nonatomic) CCNStatusItemWindowConfiguration *windowConfiguration;
 
+/**
+ Property holding window used for popover
+ */
+@property (readonly, nonatomic) NSWindow *window;
 @end
 
 
