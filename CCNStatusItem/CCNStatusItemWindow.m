@@ -99,10 +99,6 @@
     [self.backgroundView addSubview:self.userContentView];
 }
 
-- (id)contentView {
-    return self.userContentView;
-}
-
 - (NSRect)frameRectForContentRect:(NSRect)contentRect {
     return NSMakeRect(NSMinX(contentRect), NSMinY(contentRect), NSWidth(contentRect), NSHeight(contentRect) + CCNDefaultArrowHeight);
 }
