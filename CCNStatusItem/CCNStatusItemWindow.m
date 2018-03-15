@@ -70,8 +70,7 @@
     [super setFrame:frameRect display:flag];
 }
 
-- (void)setVisibilityDelegate:(id<CCNStatusItemVisibilityDelegate>)visibilityDelegate
-{
+- (void)setVisibilityDelegate:(id<CCNStatusItemVisibilityDelegate>)visibilityDelegate {
     _visibilityDelegate = visibilityDelegate;
     self.backgroundView.visibilityDelegate = self.visibilityDelegate;
 }

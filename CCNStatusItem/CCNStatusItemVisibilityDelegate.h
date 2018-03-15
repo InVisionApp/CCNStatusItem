@@ -17,7 +17,7 @@
  @value YES The item is visible.
  @value NO The item is not visible.
  */
-@property (readonly, assign, nonatomic) BOOL isStatusItemVisible;
+@property(getter=isStatusItemVisible, readonly, assign, nonatomic) BOOL statusItemVisible;
 
 @end
 
