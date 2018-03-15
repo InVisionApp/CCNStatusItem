@@ -72,7 +72,12 @@ typedef void (^CCNStatusItemWindowAnimationCompletion)(void);
         self.windowConfiguration = windowConfiguration;
 
         // StatusItem Window
-        self.window = [CCNStatusItemWindow statusItemWindowWithConfiguration:windowConfiguration];
+        CCNStatusItemWindow *statusItemWindow = [CCNStatusItemWindow statusItemWindowWithConfiguration:windowConfiguration];
+        self.window = statusItemWindow;
+
+        // The CCNStatusItem is the visibilityDelegate
+        statusItemWindow.visibilityDelegate = statusItem;
+
         self.contentViewController = contentViewController;
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWindowDidResignKeyNotification:) name:NSWindowDidResignKeyNotification object:nil];
@@ -92,13 +97,26 @@ typedef void (^CCNStatusItemWindowAnimationCompletion)(void);
 #pragma mark - Helper
 
 - (void)updateWindowFrame {
-    CGRect statusItemRect = [[self.statusItemView.statusItem.button window] frame];
-    CGRect windowFrame = NSMakeRect(NSMinX(statusItemRect) - NSWidth(self.window.frame) / 2 + NSWidth(statusItemRect) / 2,
-                                    MIN(NSMinY(statusItemRect), [NSScreen mainScreen].frame.size.height) - NSHeight(self.window.frame) - self.windowConfiguration.windowToStatusItemMargin,
-                                    self.window.frame.size.width,
-                                    self.window.frame.size.height);
+    CGRect windowFrame = self.statusItemView.isStatusItemVisible ? [self visibleStatusItemWindowFrame] : [self hiddenStatusItemWindowFrame];
     [self.window setFrame:windowFrame display:YES];
     [self.window setAppearance:[NSAppearance currentAppearance]];
+}
+
+- (CGRect)visibleStatusItemWindowFrame {
+    CGRect statusItemRect = [[self.statusItemView.statusItem.button window] frame];
+    return NSMakeRect(NSMinX(statusItemRect) - NSWidth(self.window.frame) / 2 + NSWidth(statusItemRect) / 2,
+                      MIN(NSMinY(statusItemRect), [NSScreen mainScreen].frame.size.height) - NSHeight(self.window.frame) - self.windowConfiguration.windowToStatusItemMargin,
+                      self.window.frame.size.width,
+                      self.window.frame.size.height);
+}
+
+- (CGRect)hiddenStatusItemWindowFrame {
+    CGFloat screenMargin = 10;
+    NSSize windowSize = self.window.frame.size;
+    NSRect screenFrame = NSScreen.mainScreen.frame;
+    return NSMakeRect(NSMaxX(screenFrame) - windowSize.width - screenMargin,
+                      NSMaxY(screenFrame) - windowSize.height - screenMargin,
+                      windowSize.width, windowSize.height);
 }
 
 #pragma mark - Handling Window Visibility

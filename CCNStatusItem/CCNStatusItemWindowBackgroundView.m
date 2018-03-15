@@ -46,6 +46,13 @@
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
+
+    // Don't draw the popover arrow when detached deatched
+    //
+    if (self.isDetached) {
+        return;
+    }
+
     CGFloat arrowHeight   = CCNDefaultArrowHeight;
     CGFloat arrowWidth    = CCNDefaultArrowWidth;
     CGFloat cornerRadius  = CCNDefaultCornerRadius;
@@ -74,6 +81,12 @@
 
     [self.windowConfiguration.backgroundColor setFill];
     [windowPath fill];
+}
+
+- (BOOL)isDetached {
+    if (self.visibilityDelegate == nil) { return NO; }
+
+    return self.visibilityDelegate.isStatusItemVisible == NO;
 }
 
 #pragma mark - Custom Accessors
