@@ -65,6 +65,11 @@
     return YES;
 }
 
+- (void)setFrame:(NSRect)frameRect display:(BOOL)flag {
+    [self.backgroundView setNeedsDisplay:YES];
+    [super setFrame:frameRect display:flag];
+}
+
 - (void)setVisibilityDelegate:(id<CCNStatusItemVisibilityDelegate>)visibilityDelegate
 {
     _visibilityDelegate = visibilityDelegate;
