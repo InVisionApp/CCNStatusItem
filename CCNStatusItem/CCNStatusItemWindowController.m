@@ -103,9 +103,10 @@ typedef void (^CCNStatusItemWindowAnimationCompletion)(void);
 }
 
 - (CGRect)visibleStatusItemWindowFrame {
+    NSRect screenFrame = [self currentMouseScreen].frame;
     CGRect statusItemRect = [[self.statusItemView.statusItem.button window] frame];
     return NSMakeRect(NSMinX(statusItemRect) - NSWidth(self.window.frame) / 2 + NSWidth(statusItemRect) / 2,
-                      MIN(NSMinY(statusItemRect), [NSScreen mainScreen].frame.size.height) - NSHeight(self.window.frame) - self.windowConfiguration.windowToStatusItemMargin,
+                      MIN(NSMinY(statusItemRect), NSMaxY(screenFrame)) - NSHeight(self.window.frame) - self.windowConfiguration.windowToStatusItemMargin,
                       self.window.frame.size.width,
                       self.window.frame.size.height);
 }
@@ -113,10 +114,24 @@ typedef void (^CCNStatusItemWindowAnimationCompletion)(void);
 - (CGRect)hiddenStatusItemWindowFrame {
     CGFloat screenMargin = 10;
     NSSize windowSize = self.window.frame.size;
-    NSRect screenFrame = NSScreen.mainScreen.frame;
+    NSRect screenFrame = [self currentMouseScreen].frame;
     return NSMakeRect(NSMaxX(screenFrame) - windowSize.width - screenMargin,
                       NSMaxY(screenFrame) - windowSize.height - screenMargin,
                       windowSize.width, windowSize.height);
+}
+
+- (NSScreen*)currentMouseScreen {
+    NSPoint currentMousePoint = NSEvent.mouseLocation;
+    NSScreen *currentScreen = NSScreen.mainScreen;
+
+    for (NSScreen *screen in NSScreen.screens) {
+        if (NSMouseInRect(currentMousePoint, screen.frame, NO)) {
+            currentScreen = screen;
+            break;
+        }
+    }
+
+    return currentScreen;
 }
 
 #pragma mark - Handling Window Visibility
