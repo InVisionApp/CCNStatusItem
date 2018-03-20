@@ -30,8 +30,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CCNStatusItemWindowConfiguration.h"
+#import "CCNStatusItemVisibilityDelegate.h"
 
 @interface CCNStatusItemWindow : NSPanel
+
+@property (weak, nonatomic) id<CCNStatusItemVisibilityDelegate> visibilityDelegate;
 
 + (instancetype)statusItemWindowWithConfiguration:(CCNStatusItemWindowConfiguration *)configuration;
 

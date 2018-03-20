@@ -65,6 +65,16 @@
     return YES;
 }
 
+- (void)setFrame:(NSRect)frameRect display:(BOOL)flag {
+    [self.backgroundView setNeedsDisplay:YES];
+    [super setFrame:frameRect display:flag];
+}
+
+- (void)setVisibilityDelegate:(id<CCNStatusItemVisibilityDelegate>)visibilityDelegate {
+    _visibilityDelegate = visibilityDelegate;
+    self.backgroundView.visibilityDelegate = self.visibilityDelegate;
+}
+
 - (void)setContentView:(id)contentView {
     if ([self.userContentView isEqual:contentView]) return;
 
@@ -80,6 +90,7 @@
         self.backgroundView.layer.cornerRadius = CCNDefaultCornerRadius;
         self.backgroundView.layer.masksToBounds = YES;
         self.backgroundView.layer.edgeAntialiasingMask = antialiasingMask;
+        self.backgroundView.visibilityDelegate = self.visibilityDelegate;
         super.contentView = self.backgroundView;
     }
 

@@ -383,6 +383,15 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
     [self configureDropView];
 }
 
+#pragma mark - CCNStatusItemVisibilityDelegate
+
+- (BOOL)isStatusItemVisible {
+    // The item should be visible if its window has a screen
+    //
+    NSScreen *statusItemScreen = self.statusItem.button.window.screen;
+    return statusItemScreen != nil;
+}
+
 #pragma mark - Helper
 
 - (void)enableDragEventMonitor {

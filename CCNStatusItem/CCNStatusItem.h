@@ -29,6 +29,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CCNStatusItemWindowConfiguration.h"
+#import "CCNStatusItemVisibilityDelegate.h"
 
 
 @class CCNStatusItem;
@@ -50,7 +51,7 @@ typedef BOOL (^CCNStatusItemShouldShowHandler)(CCNStatusItem *sharedItem);
 
 #pragma mark - CCNStatusItem
 
-@interface CCNStatusItem : NSObject
+@interface CCNStatusItem : NSObject <CCNStatusItemVisibilityDelegate>
 
 #pragma mark - Initialization
 /** @name Initialization */

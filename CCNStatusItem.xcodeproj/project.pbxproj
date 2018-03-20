@@ -19,6 +19,7 @@
 		5352C4051C800DF800BCF3ED /* CCNStatusItemWindowConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5352C3F91C800DF800BCF3ED /* CCNStatusItemWindowConfiguration.m */; };
 		5352C4061C800DF800BCF3ED /* CCNStatusItemWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5352C3FA1C800DF800BCF3ED /* CCNStatusItemWindowController.h */; };
 		5352C4071C800DF800BCF3ED /* CCNStatusItemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5352C3FB1C800DF800BCF3ED /* CCNStatusItemWindowController.m */; };
+		D843C145205B118300CC48A2 /* CCNStatusItemVisibilityDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D843C144205B118300CC48A2 /* CCNStatusItemVisibilityDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5352C3FB1C800DF800BCF3ED /* CCNStatusItemWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNStatusItemWindowController.m; sourceTree = "<group>"; };
 		537D5BC91C800DA500699222 /* CCNStatusItem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCNStatusItem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		537D5BCE1C800DA500699222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D843C144205B118300CC48A2 /* CCNStatusItemVisibilityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNStatusItemVisibilityDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				5352C3F91C800DF800BCF3ED /* CCNStatusItemWindowConfiguration.m */,
 				5352C3FA1C800DF800BCF3ED /* CCNStatusItemWindowController.h */,
 				5352C3FB1C800DF800BCF3ED /* CCNStatusItemWindowController.m */,
+				D843C144205B118300CC48A2 /* CCNStatusItemVisibilityDelegate.h */,
 				537D5BCE1C800DA500699222 /* Info.plist */,
 			);
 			path = CCNStatusItem;
@@ -93,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5352C3FC1C800DF800BCF3ED /* CCNStatusItem.h in Headers */,
+				D843C145205B118300CC48A2 /* CCNStatusItemVisibilityDelegate.h in Headers */,
 				5352C4041C800DF800BCF3ED /* CCNStatusItemWindowConfiguration.h in Headers */,
 				5352C3FE1C800DF800BCF3ED /* CCNStatusItemDropView.h in Headers */,
 				5352C4061C800DF800BCF3ED /* CCNStatusItemWindowController.h in Headers */,

@@ -30,8 +30,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CCNStatusItemWindowConfiguration.h"
+#import "CCNStatusItemVisibilityDelegate.h"
 
 @interface CCNStatusItemWindowBackgroundView : NSView
+
+@property (weak, nonatomic) id<CCNStatusItemVisibilityDelegate> visibilityDelegate;
 
 - (instancetype)initWithFrame:(NSRect)frameRect windowConfiguration:(CCNStatusItemWindowConfiguration *)configuration;
 
