@@ -456,9 +456,11 @@ static NSString *const CCNStatusItemWindowConfigurationPinnedPath = @"windowConf
             [self disableDragEventMonitor];
         }
         else {
-            [self dismissStatusItemWindow];
-            if (self.proximityDragDetectionEnabled) {
-                [self enableDragEventMonitor];
+            if (self.windowConfiguration.isPinned == NO && self.window.isKeyWindow == NO) {
+                [self dismissStatusItemWindow];
+                if (self.proximityDragDetectionEnabled) {
+                    [self enableDragEventMonitor];
+                }
             }
         }
     }
